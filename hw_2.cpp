@@ -9,6 +9,16 @@ private:
 	string name;
 	bool sex;
 public:
+	Human() 
+	{
+		sex = rand() % 32767 + 1;
+		if (sex == 0)
+			name = "Jane";	
+		else
+			name = "John";
+		age = 18;
+		
+	}
 	Human (unsigned int Age, string Name, bool Sex)
 	{
 		age = Age;
@@ -32,6 +42,30 @@ public:
 	void setName(string some_name) { name = some_name;}
 	void setAge(int some_age) { age = some_age; }
 	void setSex(bool some_sex) { sex = some_sex; }
+};
+class DnD_Character : public Human 
+{
+private:
+	unsigned short int hp, armor, spd, str, dex;
+public:
+	DnD_Character (unsigned short int HP, unsigned short int Armor, unsigned short int SPD, unsigned short int STR, unsigned short int DEX)
+	{
+		hp = HP;
+		armor = Armor;
+		SPD = spd;
+		STR = str;
+		DEX = dex;
+	}
+};
+class student : public Human
+{
+private:
+	string education;
+public:
+	student(string EDU) 
+	{
+		education = EDU;
+	}
 };
 
 int main()
