@@ -46,16 +46,25 @@ public:
 class DnD_Character : public Human 
 {
 private:
-	unsigned short int hp, armor, spd, str, dex;
+	unsigned short int hp, armor;
+	
 public:
-	DnD_Character (unsigned short int HP, unsigned short int Armor, unsigned short int SPD, unsigned short int STR, unsigned short int DEX)
+	DnD_Character()
+	{
+		hp = 1;
+		armor = 0;
+		
+	}
+	inline DnD_Character (unsigned short int HP, unsigned short int Armor)
 	{
 		hp = HP;
 		armor = Armor;
-		SPD = spd;
-		STR = str;
-		DEX = dex;
+		
 	}
+	void setHP(int some_HP) { hp = some_HP; }
+	void setArmor(int some_Armor) { armor = some_Armor; }
+	int getHP() const { return hp; }
+	int getArmor() const { return armor; }
 };
 class student : public Human
 {
@@ -66,6 +75,8 @@ public:
 	{
 		education = EDU;
 	}
+	string getEDU() const { return education; }
+	void setEDU(string EDU) { education = EDU; }
 };
 
 int main()
@@ -74,5 +85,11 @@ int main()
 	setlocale(0, "");
 	Human human1 (20, "Федор", 1);
 	Human human2 (19, "Маргарита", 0);
+	DnD_Character Warrior(30,17);
+	student It_one("Programmer");
+	Warrior.setSex(0);
+	Warrior.setName("Claire");
+	cout << Warrior.getHP() << endl;
+	cout << It_one.getEDU() << endl;
 	return 0;
 }
