@@ -43,7 +43,7 @@ public:
 	void setAge(int some_age) { age = some_age; }
 	void setSex(bool some_sex) { sex = some_sex; }
 };
-class DnD_Character : public Human 
+class DnD_Character : virtual public Human 
 {
 private:
 	unsigned short int hp, armor;
@@ -66,11 +66,15 @@ public:
 	int getHP() const { return hp; }
 	int getArmor() const { return armor; }
 };
-class student : public Human
+class student : virtual public Human
 {
 private:
 	string education;
 public:
+	student()
+	{
+		education = "none";
+	}
 	student(string EDU) 
 	{
 		education = EDU;
@@ -78,7 +82,84 @@ public:
 	string getEDU() const { return education; }
 	void setEDU(string EDU) { education = EDU; }
 };
+class Isekai_character : public DnD_Character, public student
+{
+private:
+	unsigned int lvl;
+	char rang;
+public:
+	Isekai_character()
+	{
+		lvl = 1;
+		rang = 'F';
+	}
+	Isekai_character(unsigned int level, char r)
+	{
+		lvl = level;
+		rang = r;
+	}
+	char getRang() const { return rang; }
+	void setEDU(char r) { rang = r; }
+	unsigned int getLVL() const { return lvl; }
+	void setLVL(unsigned int level) { lvl = level; }
+}; 
+class internet
+{
+public:
+	int popularity;
+	bool isOLD;
+	internet()
+	{
+		popularity = 0;
+		isOLD = 0;
+	}
+	internet(int popul, bool old)
+	{
+		popularity = popul;
+		isOLD = old;
+	}
+	 int getPopularity() const { return popularity; }
+	void setPopularity( int popl) { popularity = popl; }
+	bool getOLD() const { return isOLD; }
+	void setOLD(int old) { isOLD = old; }
+};
+class Vtuber : virtual public Isekai_character,  public internet
+{
+	int cash;
+	Vtuber(int c)
+	{
+		cash = c;
+	}
+	unsigned int getCash() const { return cash; }
+	string donate(unsigned int Howmuch)
+	{
+		cash += Howmuch;
+		return "Thank you for donation! ^-^";
+	}
+};
+class user : public Human, public internet
+{
+	string browser;
+	user(string br) 
+	{
+		browser = br;
+	}
+	string getBrowser() const { return browser; }
+	void setBrowser(string br ) { browser = br; }
+};
+class Moba_player : public internet, virtual public DnD_Character
+{
+	string Game;
+	Moba_player(string G)
+	{
+		Game = G;
+	}
+	string getGame() const { return Game; }
+	void setGame(string g) { Game = g; }
+};
 
+
+// DnD_char+ internet = Moba_player;
 int main()
 {
 
