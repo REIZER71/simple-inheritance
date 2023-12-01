@@ -103,6 +103,7 @@ public:
 	unsigned int getLVL() const { return lvl; }
 	void setLVL(unsigned int level) { lvl = level; }
 }; 
+
 class internet
 {
 public:
@@ -122,8 +123,19 @@ public:
 	void setPopularity( int popl) { popularity = popl; }
 	bool getOLD() const { return isOLD; }
 	void setOLD(int old) { isOLD = old; }
+	virtual void status() 
+	{
+		cout << "Hello, world" << endl;
+	}
 };
-class Vtuber : virtual public Isekai_character,  public internet
+class Fans
+{
+	virtual void CheerUp()
+	{
+		cout << "Hooray! " << endl;
+	}
+};
+class Vtuber : virtual public Isekai_character,  public internet, public Fans
 {
 	int cash;
 	Vtuber(int c)
@@ -136,6 +148,14 @@ class Vtuber : virtual public Isekai_character,  public internet
 		cash += Howmuch;
 		return "Thank you for donation! ^-^";
 	}
+	void status() override
+	{
+		cout << "Super gamer, singer and just cool ^-^ " << endl;
+	}
+	void CheerUp() override
+	{
+		cout << "OMG YOU ARE SO CUTE UwU" << endl;
+	}
 };
 class user : public Human, public internet
 {
@@ -146,6 +166,10 @@ class user : public Human, public internet
 	}
 	string getBrowser() const { return browser; }
 	void setBrowser(string br ) { browser = br; }
+	void status() override
+	{
+		cout << "Welcome to the internet" << endl;
+	}
 };
 class Moba_player : public internet, virtual public DnD_Character
 {
@@ -156,10 +180,13 @@ class Moba_player : public internet, virtual public DnD_Character
 	}
 	string getGame() const { return Game; }
 	void setGame(string g) { Game = g; }
+	void status() override
+	{
+		cout << "*Farming in procces*" << endl;
+	}
 };
 
 
-// DnD_char+ internet = Moba_player;
 int main()
 {
 
